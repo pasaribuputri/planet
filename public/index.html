@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planets</title>
+</head>
+<body>
+    <style>
+        body{
+            background-color: antiquewhite;
+        }
+        th,
+        td {
+            border: 1px solid;
+        }
+    
+        table {
+            border-collapse: collapse;
+            background-color: rgb(254, 247, 237);
+        }
+    </style>
+    </head>
+    
+    <body>
+        <h1 align=" center">Planets Data</h1>
+        <table align="center">
+            <caption align="center">Data about the planets of solar system (Planetary facts taken from Nasa's Planetray Fact Sheet - Metric)</caption>
+            <thead>
+                <th>Name</th>
+                <th>Mass</th>
+                <th>Diameter (km)</th>
+                <th>Density</th>
+                <th>Gravity</th>
+                <th>Length of Day (hours)</th>
+                <th>Distance from Sun</th>
+                <th>Mean Temperature</th>
+                <th>Number of moons</th>
+                <th>Notes</th>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <script>
+            fetch("/api/planet")
+                .then((response) => response.json())
+                .then((planet) => {
+                    const tbody = document.querySelector("tbody");
+                    planet.forEach((m) => {
+                        const tr = document.createElement("tr");
+
+                        const tdName = document.createElement("td");
+                        tdName.textContent = m.Name;
+                        tr.appendChild(tdName);
+
+                        const tdMass = document.createElement("td");
+                        tdMass.textContent = m.masss;
+                        tr.appendChild(tdMass);
+
+                        const tdDiameter = document.createElement("td");
+                        tdDiameter.textContent = m.diameter;
+                        tr.appendChild(tdDiameter);
+
+                        const tdDensity = document.createElement("td");
+                        tdDensity.textContent = m.density;
+                        tr.appendChild(tdDensity);
+
+                        const tdGravity = document.createElement("td");
+                        tdGravity.textContent = m.gravity;
+                        tr.appendChild(tdGravity);
+
+                        const tdLof = document.createElement("td");
+                        tdLof.textContent = m.lof;
+                        tr.appendChild(tdLof);
+
+                        const tdDfs = document.createElement("td");
+                        tdDfs.textContent = m.dfs;
+                        tr.appendChild(tdDfs);
+
+                        const tdMeanT = document.createElement("td");
+                        tdMeanT.textContent = m.mean_t;
+                        tr.appendChild(tdMeanT);
+
+                        const tdNumber = document.createElement("td");
+                        tdNumber.textContent = m.number_of_moons;
+                        tr.appendChild(tdNumber);
+
+                        const tdNote = document.createElement("td");
+                        tdNote.textContent = m.notes;
+                        tr.appendChild(tdNote);
+
+                        tbody.appendChild(tr);
+                    });
+                });
+        </script>
+</body>
+</html>
